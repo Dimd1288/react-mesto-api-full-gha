@@ -1,0 +1,25 @@
+.tooltip__close-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    background: transparent center/cover url(../../../images/close-icon.svg);
+    cursor: pointer;
+    transition: opacity .3s;
+}
+
+@media screen and (max-width: 768px) {
+    .tooltip__close-icon {
+        width: 20px;
+        height: 20px;
+        top: -36px;
+        right: 0;
+    }
+}
+
+.tooltip__close-icon:hover {
+    opacity: .6;
+}

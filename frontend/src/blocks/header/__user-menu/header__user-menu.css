@@ -1,0 +1,4 @@
+.header__user-menu {
+  display: flex;
+  gap: 24px;
+}

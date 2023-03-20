@@ -1,0 +1,7 @@
+.auth-page__form-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 358px;
+    margin: 60px auto 0 auto;
+    
+}
