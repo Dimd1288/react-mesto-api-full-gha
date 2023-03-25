@@ -3,33 +3,24 @@ class Api {
         this._options = options;
         this._cardsEndpoint = `${this._options.baseUrl}/cards`;
         this._userEndpoint = `${this._options.baseUrl}/users/me`;
-        this._authorization = this._options.headers.authorization;
         this._contentType = this._options.headers['Content-Type'];
     }
 
     getInitialCards() {
-        return fetch(this._cardsEndpoint, {
-            headers: {
-                authorization: this._authorization,
-            }
-        })
+        return fetch(this._cardsEndpoint, {credentials: 'include'})
             .then(this._checkResponse);
     }
 
     getUser() {
-        return fetch(this._userEndpoint, {
-            headers: {
-                authorization: this._authorization,
-            }
-        })
+        return fetch(this._userEndpoint, {credentials: 'include'})
             .then(this._checkResponse);
     }
 
     patchUser(userData) {
         return fetch(this._userEndpoint, {
             method: 'PATCH',
+            credentials: 'include',
             headers: {
-                authorization: this._authorization,
                 'Content-Type': this._contentType
             },
             body: JSON.stringify({
@@ -42,8 +33,8 @@ class Api {
     postNewCard(cardData) {
         return fetch(this._cardsEndpoint, {
             method: 'POST',
+            credentials: 'include',
             headers: {
-                authorization: this._authorization,
                 'Content-Type': this._contentType
             },
             body: JSON.stringify({
@@ -57,9 +48,7 @@ class Api {
     deleteCard(cardId) {
         return fetch(`${this._cardsEndpoint}/${cardId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: this._authorization
-            }
+            credentials: 'include'
         }).then(this._checkResponse);
 
     }
@@ -67,17 +56,15 @@ class Api {
     changeLikeCardStatus(cardId, isLiked) {
         return fetch(`${this._cardsEndpoint}/${cardId}/likes`, {
             method: isLiked ? 'PUT' : 'DELETE',
-            headers: {
-                authorization: this._authorization
-            }
+            credentials: 'include'
         }).then(this._checkResponse);
     }
 
     patchAvatar(avatar) {
         return fetch(`${this._userEndpoint}/avatar`, {
             method: 'PATCH', 
+            credentials: 'include',
             headers: {
-                authorization: this._authorization,
                 'Content-Type': this._contentType
             },
             body: JSON.stringify({
@@ -99,9 +86,8 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-55',
+    baseUrl: 'http://localhost:3000',
     headers: {
-      authorization: 'd336096d-2d8c-44f4-af75-d1804dff5c64',
       'Content-Type': 'application/json'
     }
   });

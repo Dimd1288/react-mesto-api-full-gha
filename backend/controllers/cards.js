@@ -9,14 +9,18 @@ const ForbiddenError = require('../errors/forbidden-error');
 module.exports.getCards = (req, res, next) => {
   Card.find({})
     .populate(['owner', 'likes'])
-    .then((cards) => res.send(cards))
+    .then((cards) => res.send(cards.reverse()))
     .catch(next);
 };
 
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(CREATED).send(card))
+    .then((card) => {
+      const {owner, ...cardData} = card._doc;
+      cardData['owner'] = { _id: owner };
+      res.status(CREATED).send(cardData)
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new ValidationError('Переданы некорректные данные при создании карточки'));
@@ -50,6 +54,7 @@ module.exports.setCardLike = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .orFail(() => {
       throw new NotFoundError('Передан несуществующий _id карточки');
     })
@@ -68,6 +73,7 @@ module.exports.deleteCardLike = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .orFail(() => {
       throw new NotFoundError('Передан несуществующий _id карточки');
     })

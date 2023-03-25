@@ -33,7 +33,6 @@ function App() {
     });
     const navigate = useNavigate();
 
-
     useEffect(() => {
         api.getUser()
             .then(res => setCurrentUser(res))
@@ -49,7 +48,7 @@ function App() {
             const jwt = localStorage.getItem('jwt');
             getContent(jwt).then((res) => {
                 if (res) {
-                    setEmail(res.data.email);
+                    setEmail(res.email);
                     setHeader({
                         link:"",
                         name:"Выйти"

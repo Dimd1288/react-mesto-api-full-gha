@@ -10,7 +10,6 @@ function Header(props) {
             props.onLogIn(false);
             navigate('/sign-in', {replace: true});
             localStorage.removeItem('jwt');
-
         }
     }
 

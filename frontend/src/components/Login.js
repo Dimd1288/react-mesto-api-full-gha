@@ -31,8 +31,8 @@ function Login(props) {
         const {email, password} = creds;
 
         props.onAuthorize(email, password).then((data) => {
-            if (data.token){
-              localStorage.setItem('jwt', data.token);
+            if (data._id){
+              localStorage.setItem('jwt', data._id);
               setCredentials({username: '', password: ''});
               props.onLogIn();  
               navigate('/', {replace: true});

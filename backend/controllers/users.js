@@ -87,9 +87,16 @@ module.exports.login = (req, res, next) => {
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      res.send({
-        token: jwt.sign({ _id: user._id }, KEY, { expiresIn: '7d' }),
-      });
+      const token = jwt.sign({ _id: user._id }, KEY)
+      const {password, ...userResponse} = user._doc;
+      res
+        .cookie('jwt', token, {
+          maxAge: 3600000,
+          httponly: true,
+          sameSite: true
+        })
+         .send(userResponse);
+      ;
     })
     .catch(() => next(new UnathorizedError('Неверные почта или пароль')));
 };
@@ -99,7 +106,7 @@ module.exports.getCurrentUser = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError('Пользователь по указанному _id не найден');
     })
-    .then((user) => res.send({ user }))
+    .then((user) => res.send(user.toJSON()))
     .catch((err) => {
       if (err.name === 'CastError') {
         return next(new ValidationError('Переданы некорректные данные при запросе текущего пользователя'));
