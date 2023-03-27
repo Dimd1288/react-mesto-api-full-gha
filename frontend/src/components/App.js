@@ -188,6 +188,4 @@ function App() {
     );
 }
 
-//check
-
 export default App;
