@@ -14,7 +14,7 @@ const app = express();
 
 app.use(cookieParser());
 
-app.use(cors({ origin: 'http://localhost:3001', credentials: true, maxAge: 30 }));
+app.use(cors({ origin: ['http://localhost:3001', 'http://dedomrachev.nomoredomains.work'], credentials: true, maxAge: 30 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
