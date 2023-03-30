@@ -2,3 +2,10 @@
   display: flex;
   gap: 24px;
 }
+
+
+@media screen and (max-width: 1024px) {
+  .header__user-menu {
+    margin: 0 27px 0 0;
+  }
+}
