@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 178.154.193.111.
+IP 178.154.193.111
 
 Frontend https://dedomrachev.nomoredomains.work
 
