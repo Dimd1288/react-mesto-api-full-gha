@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.dedomrachev.nomoredomains.work';
+export const BASE_URL = 'https://api.dedomrachev.nomoredomains.work';
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
