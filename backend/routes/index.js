@@ -25,7 +25,7 @@ router.post('/signup', celebrate({
 router.use('/users', auth, require('./users'));
 router.use('/cards', auth, require('./cards'));
 
-router.all('*', auth, () => {
+router.all('*', auth, (req, res, next) => {
   next(new NotFoundError('Wrong url'));
 });
 
