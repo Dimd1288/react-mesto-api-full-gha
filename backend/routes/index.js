@@ -26,7 +26,7 @@ router.use('/users', auth, require('./users'));
 router.use('/cards', auth, require('./cards'));
 
 router.all('*', auth, () => {
-  throw new NotFoundError('Wrong url');
+  next(new NotFoundError('Wrong url'));
 });
 
 module.exports = router;
