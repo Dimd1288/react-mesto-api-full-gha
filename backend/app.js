@@ -9,6 +9,7 @@ const errorHandler = require('./middlewares/error-handler');
 const routes = require('./routes/index');
 const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+require('dotenv').config();
 
 const app = express();
 
