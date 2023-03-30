@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
-    if (!token){
+    if (!token) {
       return next(new UnathorizedError('Токен не найден'));
     }
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');

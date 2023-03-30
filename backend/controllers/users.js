@@ -7,7 +7,6 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 const NotFoundError = require('../errors/not-found-error');
 const ValidationError = require('../errors/validation-error');
-const UnathorizedError = require('../errors/unathorized-error');
 const ConflictError = require('../errors/conflict-error');
 
 module.exports.getUsers = (req, res, next) => {
