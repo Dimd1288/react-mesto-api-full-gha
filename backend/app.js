@@ -1,5 +1,5 @@
 const express = require('express');
-
+require('dotenv').config();
 const { PORT = 3000 } = process.env;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -9,13 +9,12 @@ const errorHandler = require('./middlewares/error-handler');
 const routes = require('./routes/index');
 const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-require('dotenv').config();
 
 const app = express();
 
 app.use(cookieParser());
 
-app.use(cors({ origin: ['http://localhost:3001', 'https://dedomrachev.nomoredomains.work', 'http://dedomrachev.nomoredomains.work'], credentials: true, maxAge: 30 }));
+app.use(cors({ origin: ['http://localhost:3001', 'https://dedomrachev.nomoredomains.work'], credentials: true, maxAge: 30 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
