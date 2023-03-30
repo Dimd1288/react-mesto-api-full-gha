@@ -15,5 +15,5 @@ module.exports = {
   CONFLICT,
   SERVER_ERROR,
   UNATHORIZED,
-  URL_REG_EXP
+  URL_REG_EXP,
 };
