@@ -4,12 +4,12 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/Dimd1288/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 178.154.193.111
 
-Frontend https://...
+Frontend https://dedomrachev.nomoredomains.work
 
-Backend https://...
+Backend https://api.dedomrachev.nomoredomains.work
