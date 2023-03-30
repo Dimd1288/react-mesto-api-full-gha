@@ -99,7 +99,7 @@ module.exports.login = (req, res, next) => {
         })
         .send(userResponse);
     })
-    .catch(() => next(new UnathorizedError('Неверные почта или пароль')));
+    .catch(next);
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
@@ -108,10 +108,5 @@ module.exports.getCurrentUser = (req, res, next) => {
       throw new NotFoundError('Пользователь по указанному _id не найден');
     })
     .then((user) => res.send(user.toJSON()))
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        return next(new ValidationError('Переданы некорректные данные при запросе текущего пользователя'));
-      }
-      return next(err);
-    });
+    .catch(next);
 };
