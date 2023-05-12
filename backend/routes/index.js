@@ -3,6 +3,7 @@ const { celebrate, Joi } = require('celebrate');
 const { login, createUser } = require('../controllers/users');
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/not-found-error');
+const ValidationError = require('../errors/validation-error')
 const { URL_REG_EXP } = require('../utils/constants');
 
 router.post('/signin', celebrate({
@@ -25,8 +26,8 @@ router.post('/signup', celebrate({
 router.use('/users', auth, require('./users'));
 router.use('/cards', auth, require('./cards'));
 
-router.all('*', auth, (req, res, next) => {
-  next(new NotFoundError('Wrong url'));
+router.all('*', (req, res, next) => {
+  next(new ValidationError('Bad request'));
 });
 
 module.exports = router;

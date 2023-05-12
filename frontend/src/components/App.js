@@ -50,8 +50,8 @@ function App() {
                 if (res) {
                     setEmail(res.email);
                     setHeader({
-                        link:"",
-                        name:"Выйти"
+                        link: "",
+                        name: "Выйти"
                     })
                     setLoggedIn(true);
                     navigate("/", { replace: true });
@@ -156,21 +156,21 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
             <div className="root">
                 <div className="page">
-                <Header link={header.link} email={email} linkName={header.name} onLogIn={setLoggedIn} loggedIn={isLoggedIn} />
+                    <Header link={header.link} email={email} linkName={header.name} onLogIn={setLoggedIn} loggedIn={isLoggedIn} />
                     <Routes>
                         <Route path="/sign-up" element={<Register onRegister={handleRegisterUser} onChangeHeader={setHeader} onLogIn={handleUserLogIn} onTooltipOpen={handleTooltipOpen} onTooltipClose={closeAllPopups} isTooltipOpen={isTooltipOpen} />} />
                         <Route path="/sign-in" element={<Login onAuthorize={handleAuthorizeUser} onChangeHeader={setHeader} onLogIn={handleUserLogIn} />} />
                         <Route path="/" element={
                             <ProtectedRouteElement loggedIn={isLoggedIn}>
-                                    <Main
-                                        cards={cards}
-                                        onEditAvatar={handleEditAvatarClick}
-                                        onEditProfile={handleEditProfileClick}
-                                        onAddPlace={handleAddPlaceClick}
-                                        onCardClick={handleCardClick}
-                                        onCardLike={handleCardLike}
-                                        onBasketClick={handleDeletePlaceClick}
-                                    />
+                                <Main
+                                    cards={cards}
+                                    onEditAvatar={handleEditAvatarClick}
+                                    onEditProfile={handleEditProfileClick}
+                                    onAddPlace={handleAddPlaceClick}
+                                    onCardClick={handleCardClick}
+                                    onCardLike={handleCardLike}
+                                    onBasketClick={handleDeletePlaceClick}
+                                />
                             </ProtectedRouteElement>}
                         />
                     </Routes>
